@@ -5,6 +5,11 @@ import matplotlib.pyplot as plt
 def EDA(X, X_train, Y_age, Y_gender, Y_age_train, Y_gender_train):
 
     print("----- Exploratory data analysis -----")
+    print("##### X #####")
+    print(X_train[:3])
+    print(f'Train age label: {Y_age_train[:10]}')
+    print(f'Train gender label: {Y_gender_train[:10]}')
+
     print(f'Original dataset size: {len(X)}')
     print(f'Train dataset size: {len(X_train)} \n {round(len(X_train)/len(X),2)*100}% of Original datasets')
 
@@ -89,6 +94,11 @@ def EDA(X, X_train, Y_age, Y_gender, Y_age_train, Y_gender_train):
     ax2.legend()
 
     plt.show()
+
+
+    # Gray Scale
+
+
 
 
 # """ After Image Arguementation """

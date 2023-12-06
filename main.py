@@ -14,14 +14,18 @@ from tensorflow.keras.utils import to_categorical
 
 from datasets_handling.EDA import *
 from datasets_handling.imageArgumentation import *
+from datasets_handling.brightDistribution import *
+from datasets_handling.brightDistribution_age import *
+from datasets_handling.contrastDistribution import *
+
 
 """ PATH """
 # path for input dir
 path = 'input'
 
 # path for datasets dir
-dataset_path = ['datasets/our_dataset']
-# dataset_path  = ['datasets/part1', 'datasets/part3']
+# dataset_path = ['datasets/our_dataset']
+dataset_path  = ['datasets/part3']
 # dataset_path  = ['datasets/part1', 'datasets/part2', 'datasets/part3']
 
 """ Handling argument (reading in the data) """
@@ -121,18 +125,12 @@ Y_gender_test = Y_gender[int(len(Y_gender)*0.8):]   # 20%
 X_train = X_train.astype('float32') / 255
 X_test = X_test.astype('float32') / 255
 
-print("----- X -----")
-print(X_train[:3])
-
-print(f'Train age label: {Y_age_train[:10]}')
-print(f'Train gender label: {Y_gender_train[:10]}')
-
-print(len(X))
-print(len(X_train))
-
 
 """ Exploratory data analysis """
 EDA(X, X_train, Y_age, Y_gender, Y_age_train, Y_gender_train)
+plot_brightness_distribution_with_outliers_boxplot(X_train, X_test, Y_age_train, Y_age_test)
+plot_brightness_distribution_with_outliers_kde(X_train, X_test, Y_age_train, Y_age_test, 2.5, 20)
+plot_contrast_distribution_with_outliers_kde(X_train, X_test, Y_age_train, Y_age_test, 2.5, 20)
 
 """ Image Arguementation """
 imageArgumentation(X_train, Y_age_train)
